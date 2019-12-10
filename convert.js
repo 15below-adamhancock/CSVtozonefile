@@ -12,10 +12,10 @@ const domain = myArgs[1];
 
   // sort records
   const jsonArray1 = await jsonArray.sort(function(a, b) {
-    if (b.Record < a.Record) {
+    if (a.Record.length < b.Record.length) {
       return -1;
     }
-    if (b.Record > a.Record) {
+    if (a.Record.length > b.Record.length) {
       return 1;
     }
     return 0;

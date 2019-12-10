@@ -10,7 +10,7 @@ const domain = myArgs[1];
 (async () => {
   const jsonArray = await csv().fromFile(csvFilePath);
 
-  // sort records
+  // sort records by length to allow parent zones to be created first.
   const jsonArray1 = await jsonArray.sort(function(a, b) {
     if (a.Record.length < b.Record.length) {
       return -1;

@@ -10,13 +10,24 @@ const domain = myArgs[1];
 (async () => {
   const jsonArray = await csv().fromFile(csvFilePath);
 
+  // sort records
+  const jsonArray1 = await jsonArray.sort(function(a, b) {
+    if (b.Record < a.Record) {
+      return -1;
+    }
+    if (b.Record > a.Record) {
+      return 1;
+    }
+    return 0;
+  });
+
   const zoneFileJSON = {
     $origin: domain,
     $ttl: 3600,
     ...require("./util/zoneFile")
   };
 
-  await jsonArray.forEach(dnsZone => {
+  await jsonArray1.forEach(dnsZone => {
     // A records
     if (dnsZone["Record Type"] == "A") {
       zoneFileJSON.a.push(require("./util/converter/aRecord")(dnsZone, domain));

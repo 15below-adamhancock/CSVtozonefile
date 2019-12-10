@@ -51,9 +51,9 @@ const domain = myArgs[1];
     }
 
     // SRV
-    if (dnsZone["Record Type"] == "SRV") {
-      zoneFileJSON.srv.push(dnsZone);
-    }
+    // if (dnsZone["Record Type"] == "SRV") {
+    //   zoneFileJSON.srv.push(dnsZone);
+    // }
     // end
   });
   const output = zonefile.generate(zoneFileJSON);

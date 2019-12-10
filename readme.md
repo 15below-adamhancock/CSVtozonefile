@@ -8,8 +8,9 @@ This script will convert a CSV file exported from Flextential to a DNS zonefile.
 
 ## Setup
 
-`npm install`
+- `npm install`
 
 ## Usage
 
-`node .\convert.js filename.csv domain.com`
+- Copy the flexential CSV file to input folder.
+- `node .\convert.js filename.csv domain.com`

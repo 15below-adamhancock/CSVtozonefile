@@ -1,8 +1,10 @@
-const axios = require('axios')
+const dig = require('node-dig-dns')
 
 module.exports = async function (dns, ip) {
-    return axios.get(`https://dns.techops.15below.local/dig?domain=${dns}&server=8.8.8.8&type=f`).then((res) => {
-        if (res.data.length == 0 || res.data[0].value !== ip) {
+    const options = [`@8.8.8.8`, 'a', dns]
+    await dig(options).then((res) => {
+
+        if (res.answer.length == 0 || res.answer[0].value !== ip) {
             return true
         } else {
             return false

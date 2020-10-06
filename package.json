@@ -12,6 +12,7 @@
     "axios": "^0.20.0",
     "cloudflare": "^2.7.0",
     "csvtojson": "^2.0.10",
-    "dns-zonefile": "^0.2.3"
+    "dns-zonefile": "^0.2.3",
+    "node-dig-dns": "^0.2.10"
   }
 }

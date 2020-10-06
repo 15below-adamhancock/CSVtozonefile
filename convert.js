@@ -30,7 +30,7 @@ const domain = myArgs[1];
   for await (dnsZone of jsonArray1) {
 
     const dnsExists = await checkDNS(`${dnsZone.Record}.${domain}`, dnsZone.Content)
-    // check DNS doesn't exist 
+    // check DNS doesn't exist or it doesn't match 
     if (dnsExists) {
       console.log(`Adding ${dnsZone.Record}.${domain}`)
       // A records

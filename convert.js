@@ -29,40 +29,39 @@ const domain = myArgs[1];
   };
   for await (dnsZone of jsonArray1) {
 
-    const dnsExists = await checkDNS(`${dnsZone.Record}.${domain}`, dnsZone.Content)
+    // const dnsExists = await checkDNS(`${dnsZone.Record}.${domain}`, dnsZone.Content)
     // check DNS doesn't exist or it doesn't match 
-    if (dnsExists) {
-      console.log(`Adding ${dnsZone.Record}.${domain}`)
-      // A records
-      if (dnsZone["Record Type"] == "A") {
-        await zoneFileJSON.a.push(require("./util/converter/aRecord")(dnsZone, domain));
-      }
 
-      // cnames
-      if (dnsZone["Record Type"] == "CNAME") {
-        await zoneFileJSON.cname.push(
-          require("./util/converter/cName")(dnsZone, domain)
-        );
-      }
-
-      // mx
-      if (dnsZone["Record Type"] == "MX") {
-        await zoneFileJSON.mx.push(require("./util/converter/mx")(dnsZone, domain));
-      }
-
-      // txt
-      if (dnsZone["Record Type"] == "TXT") {
-        await zoneFileJSON.txt.push(require("./util/converter/txt")(dnsZone, domain));
-      }
-
-      // SRV
-      // if (dnsZone["Record Type"] == "SRV") {
-      //   zoneFileJSON.srv.push(dnsZone);
-      // }
-      // end
-    } else {
-      console.log(`${dnsZone.Record}.${domain} exists already`)
+    // console.log(`Adding ${dnsZone.Record}.${domain}`)
+    // A records
+    if (dnsZone["Record Type"] == "A") {
+      await zoneFileJSON.a.push(require("./util/converter/aRecord")(dnsZone, domain));
     }
+
+    // cnames
+    if (dnsZone["Record Type"] == "CNAME") {
+      await zoneFileJSON.cname.push(
+        require("./util/converter/cName")(dnsZone, domain)
+      );
+    }
+
+    // mx
+    if (dnsZone["Record Type"] == "MX") {
+      await zoneFileJSON.mx.push(require("./util/converter/mx")(dnsZone, domain));
+    }
+
+    // txt
+    if (dnsZone["Record Type"] == "TXT") {
+      await zoneFileJSON.txt.push(require("./util/converter/txt")(dnsZone, domain));
+    }
+
+    // SRV
+    // if (dnsZone["Record Type"] == "SRV") {
+    //   zoneFileJSON.srv.push(dnsZone);
+    // }
+    // end
+
+
   };
   const output = zonefile.generate(zoneFileJSON);
   // write to sync
